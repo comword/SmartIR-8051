@@ -3,7 +3,7 @@
 <project>
   <fileVersion>2</fileVersion>
   <configuration>
-    <name>Debug</name>
+    <name>Coordinator</name>
     <toolchain>
       <name>8051</name>
     </toolchain>
@@ -114,15 +114,15 @@
         </option>
         <option>
           <name>ExePath</name>
-          <state>Debug\Exe</state>
+          <state>Coordinator\Exe</state>
         </option>
         <option>
           <name>ObjPath</name>
-          <state>Debug\Obj</state>
+          <state>Coordinator\Obj</state>
         </option>
         <option>
           <name>ListPath</name>
-          <state>Debug\List</state>
+          <state>Coordinator\List</state>
         </option>
         <option>
           <name>GOutputBinary</name>
@@ -312,7 +312,6 @@
           <state>MT_APP_FUNC</state>
           <state>MT_SYS_FUNC</state>
           <state>MT_ZDO_FUNC</state>
-          <state>LCD_SUPPORTED=DEBUG</state>
           <state>MULTICAST_ENABLED=FALSE</state>
           <state>ZCL_READ</state>
           <state>ZCL_WRITE</state>
@@ -509,6 +508,7 @@
           <state>$PROJ_DIR$\stack\zcl</state>
           <state>$PROJ_DIR$\stack\sys</state>
           <state>$PROJ_DIR$\stack\sapi</state>
+          <state>$PROJ_DIR$\app</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1152,18 +1152,18 @@
     </settings>
   </configuration>
   <configuration>
-    <name>Release</name>
+    <name>End device</name>
     <toolchain>
       <name>8051</name>
     </toolchain>
-    <debug>0</debug>
+    <debug>1</debug>
     <settings>
       <name>General</name>
       <archiveVersion>3</archiveVersion>
       <data>
         <version>8</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>CPU Core</name>
           <version>1</version>
@@ -1177,22 +1177,22 @@
         <option>
           <name>Code Memory Model</name>
           <version>1</version>
-          <state>1</state>
+          <state>2</state>
         </option>
         <option>
           <name>Code Memory Model slave</name>
           <version>1</version>
-          <state>1</state>
+          <state>2</state>
         </option>
         <option>
           <name>Data Memory Model</name>
           <version>0</version>
-          <state>1</state>
+          <state>2</state>
         </option>
         <option>
           <name>Data Memory Model slave</name>
           <version>0</version>
-          <state>1</state>
+          <state>2</state>
         </option>
         <option>
           <name>Use extended stack</name>
@@ -1209,16 +1209,16 @@
         <option>
           <name>Calling convention</name>
           <version>0</version>
-          <state>2</state>
+          <state>4</state>
         </option>
         <option>
           <name>Workseg Size</name>
           <version>0</version>
-          <state>0</state>
+          <state>8</state>
         </option>
         <option>
           <name>Constant Placement</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>Datapointer Size</name>
@@ -1231,19 +1231,19 @@
         </option>
         <option>
           <name>Switch Method</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>Mask Value</name>
-          <state>0x00</state>
+          <state>0xFF</state>
         </option>
         <option>
           <name>DPS Address</name>
-          <state></state>
+          <state>0x92</state>
         </option>
         <option>
           <name>Sfr Visibility</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>DPTR Addresses</name>
@@ -1251,7 +1251,7 @@
         </option>
         <option>
           <name>CodeBankReg</name>
-          <state>0x90</state>
+          <state>0x9F</state>
         </option>
         <option>
           <name>CodeBankStart</name>
@@ -1263,15 +1263,15 @@
         </option>
         <option>
           <name>ExePath</name>
-          <state>Release\Exe</state>
+          <state>End device\Exe</state>
         </option>
         <option>
           <name>ObjPath</name>
-          <state>Release\Obj</state>
+          <state>End device\Obj</state>
         </option>
         <option>
           <name>ListPath</name>
-          <state>Release\List</state>
+          <state>End device\List</state>
         </option>
         <option>
           <name>GOutputBinary</name>
@@ -1287,7 +1287,7 @@
         </option>
         <option>
           <name>RTLibraryPath</name>
-          <state>$TOOLKIT_DIR$\LIB\CLIB\cl-pli-nsid-1e16x01.r51</state>
+          <state>$TOOLKIT_DIR$\LIB\CLIB\cl-pli-blxd-1e16x01.r51</state>
         </option>
         <option>
           <name>Input variant</name>
@@ -1325,7 +1325,7 @@
         </option>
         <option>
           <name>General Xdata Stack Size</name>
-          <state>0xFFF</state>
+          <state>0x300</state>
         </option>
         <option>
           <name>General Ext Stack Size</name>
@@ -1345,11 +1345,11 @@
         </option>
         <option>
           <name>CodeBankNrOfs</name>
-          <state>0x03</state>
+          <state>0x07</state>
         </option>
         <option>
           <name>CodeBankRegMask</name>
-          <state>0x30</state>
+          <state>0xFF</state>
         </option>
         <option>
           <name>GeneralMisraRules98</name>
@@ -1358,7 +1358,7 @@
         </option>
         <option>
           <name>PDATA 8-15 register address</name>
-          <state>0xA0</state>
+          <state>0x93</state>
         </option>
         <option>
           <name>PDATA 16-31 register address</name>
@@ -1401,11 +1401,11 @@
         </option>
         <option>
           <name>OGChipSelectMenu</name>
-          <state>8052	Generic 8052</state>
+          <state>CC2530F256	CC2530F256</state>
         </option>
         <option>
           <name>OGChipSelectMenuSlave</name>
-          <state>8052	Generic 8052</state>
+          <state>CC2530F256	CC2530F256</state>
         </option>
         <option>
           <name>DPC Address</name>
@@ -1435,7 +1435,7 @@
       <data>
         <version>11</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>CCOptSizeSpeedSlave</name>
           <state>0</state>
@@ -1451,7 +1451,31 @@
         </option>
         <option>
           <name>CCDefines</name>
-          <state>NDEBUG</state>
+          <state>SECURE=1</state>
+          <state>TC_LINKKEY_JOIN</state>
+          <state>NV_INIT</state>
+          <state>xNV_RESTORE</state>
+          <state>xPOWER_SAVING</state>
+          <state>NWK_AUTO_POLL</state>
+          <state>HOLD_AUTO_START</state>
+          <state>ZTOOL_P1</state>
+          <state>MT_TASK</state>
+          <state>MT_APP_FUNC</state>
+          <state>MT_SYS_FUNC</state>
+          <state>MT_ZDO_FUNC</state>
+          <state>MULTICAST_ENABLED=FALSE</state>
+          <state>ZCL_READ</state>
+          <state>ZCL_WRITE</state>
+          <state>ZCL_REPORT</state>
+          <state>ZCL_EZMODE</state>
+          <state>ZCL_BASIC</state>
+          <state>ZCL_IDENTIFY</state>
+          <state>ZCL_ON_OFF</state>
+          <state>ZCL_SCENES</state>
+          <state>ZCL_GROUPS</state>
+          <state>xZCL_LEVEL_CTRL</state>
+          <state>ZCL_DIAGNOSTIC</state>
+          <state>FEATURE_SYSTEM_STATS</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -1467,23 +1491,23 @@
         </option>
         <option>
           <name>CCListCFile</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CCListCMnemonics</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CCListCMessages</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CCListAssFile</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CCListAssSource</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CCEnableRemarks</name>
@@ -1491,7 +1515,7 @@
         </option>
         <option>
           <name>CCDiagSuppress</name>
-          <state></state>
+          <state>Pe001,Pa010</state>
         </option>
         <option>
           <name>CCDiagRemark</name>
@@ -1519,7 +1543,7 @@
         </option>
         <option>
           <name>CCRequirePrototypes</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>CCMultibyteSupport</name>
@@ -1544,7 +1568,7 @@
         </option>
         <option>
           <name>CCDebugInfo</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>OCCProcessorVariant</name>
@@ -1584,7 +1608,7 @@
         </option>
         <option>
           <name>CCCompilerRuntimeInfo</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>RomMonBpPadding</name>
@@ -1608,15 +1632,37 @@
         </option>
         <option>
           <name>Compiler Extra Options Check</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>Compiler Extra Options Edit</name>
-          <state></state>
+          <state>-f $PROJ_DIR$\Tools\f8wCoord.cfg</state>
+          <state>-f $PROJ_DIR$\Tools\f8wConfig.cfg</state>
+          <state>-f $PROJ_DIR$\Tools\f8wZCL.cfg</state>
         </option>
         <option>
           <name>CCIncludePath2</name>
-          <state></state>
+          <state>$PROJ_DIR$\ZMain</state>
+          <state>$PROJ_DIR$\osal\include</state>
+          <state>$PROJ_DIR$\hal\include</state>
+          <state>$PROJ_DIR$\hal\target\CC2530EB</state>
+          <state>$PROJ_DIR$\mac\high_level</state>
+          <state>$PROJ_DIR$\mac\include</state>
+          <state>$PROJ_DIR$\mac\low_level</state>
+          <state>$PROJ_DIR$\mac\low_level\single_chip</state>
+          <state>$PROJ_DIR$\services\saddr</state>
+          <state>$PROJ_DIR$\services\sdata</state>
+          <state>$PROJ_DIR$\mt</state>
+          <state>$PROJ_DIR$\stack\nwk</state>
+          <state>$PROJ_DIR$\stack\af</state>
+          <state>$PROJ_DIR$\zmac</state>
+          <state>$PROJ_DIR$\zmac\f8w</state>
+          <state>$PROJ_DIR$\stack\sec</state>
+          <state>$PROJ_DIR$\stack\zdo</state>
+          <state>$PROJ_DIR$\stack\zcl</state>
+          <state>$PROJ_DIR$\stack\sys</state>
+          <state>$PROJ_DIR$\stack\sapi</state>
+          <state>$PROJ_DIR$\app</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1701,7 +1747,7 @@
       <data>
         <version>6</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>OAProcessorVariant</name>
           <state>1</state>
@@ -1733,7 +1779,7 @@
         </option>
         <option>
           <name>Debug</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>AList</name>
@@ -1877,7 +1923,7 @@
       <data>
         <version>21</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>XInfineonPFlashCacheBug</name>
           <state>0</state>
@@ -1892,7 +1938,7 @@
         </option>
         <option>
           <name>OutputFile</name>
-          <state>templproj.a51</state>
+          <state>ircontroller.d51</state>
         </option>
         <option>
           <name>OutputFormat</name>
@@ -1954,11 +2000,11 @@
         </option>
         <option>
           <name>XclOverride</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>XclFile</name>
-          <state>$TOOLKIT_DIR$\config\devices\_generic\lnk51ew_8052.xcl</state>
+          <state>$PROJ_DIR$\Tools\f8w2530.xcl</state>
         </option>
         <option>
           <name>XclFileSlave</name>
@@ -2028,7 +2074,7 @@
         </option>
         <option>
           <name>SuppressDiags</name>
-          <state></state>
+          <state>e24</state>
         </option>
         <option>
           <name>TreatAsWarn</name>
@@ -2054,7 +2100,7 @@
         </option>
         <option>
           <name>ModuleSummary</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>xcProgramEntryLabel</name>
@@ -2062,7 +2108,7 @@
         </option>
         <option>
           <name>DebugInformation</name>
-          <state>1</state>
+          <state>0</state>
         </option>
         <option>
           <name>RuntimeControl</name>
@@ -2086,7 +2132,7 @@
         </option>
         <option>
           <name>ExtraOutputFile</name>
-          <state>templproj.sim</state>
+          <state>ircontroller.sim</state>
         </option>
         <option>
           <name>ExtraOutputFormat</name>
@@ -2172,11 +2218,13 @@
         </option>
         <option>
           <name>Linker Extra Options Check</name>
-          <state>0</state>
+          <state>1</state>
         </option>
         <option>
           <name>Linker Extra Options Edit</name>
-          <state></state>
+          <state>-C $PROJ_DIR$\Lib\TI2530DB\bin\Router-Pro.lib</state>
+          <state>-C $PROJ_DIR$\Lib\TI2530DB\bin\Security.lib</state>
+          <state>-C $PROJ_DIR$\Lib\TIMAC\bin\TIMAC-CC2530.lib</state>
         </option>
         <option>
           <name>CrcAlign</name>
@@ -2227,7 +2275,7 @@
       <data>
         <version>0</version>
         <wantNonLocal>1</wantNonLocal>
-        <debug>0</debug>
+        <debug>1</debug>
         <option>
           <name>XARInputs</name>
           <state></state>
@@ -2261,6 +2309,12 @@
     <name>APP</name>
     <file>
       <name>$PROJ_DIR$\app\osal_app.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\app\smartir_app.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\app\smartir_app.h</name>
     </file>
   </group>
   <group>

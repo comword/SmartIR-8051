@@ -1945,6 +1945,12 @@
     <file>
       <name>$PROJ_DIR$\app\osal_app.c</name>
     </file>
+    <file>
+      <name>$PROJ_DIR$\app\smartir_app.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\app\smartir_app.h</name>
+    </file>
   </group>
   <group>
     <name>HAL</name>
