@@ -20,6 +20,9 @@ extern UINT16 zclSmartIR_event_loop( byte task_id, UINT16 events );
 #define SMARTIR_HWVERSION          0
 #define SMARTIR_ZCLVERSION         0
 
+extern CONST zclCommandRec_t zclSmartIR_Cmds[];
+extern CONST uint8 zclCmdsArraySize;
+
 const cId_t zclSmartIR_InClusterList[] =
 {
   ZCL_CLUSTER_ID_GEN_BASIC,
@@ -29,11 +32,11 @@ const cId_t zclSmartIR_InClusterList[] =
 
 const cId_t zclSmartIR_OutClusterList[] =
 {
-//  ZCL_CLUSTER_ID_GEN_ON_OFF,
+  //  ZCL_CLUSTER_ID_GEN_ON_OFF,
   ZCL_CLUSTER_ID_GEN_IDENTIFY,
-#ifdef ZCL_LEVEL_CTRL
+  #ifdef ZCL_LEVEL_CTRL
   ZCL_CLUSTER_ID_GEN_LEVEL_CONTROL,
-#endif
+  #endif
   0
 };
 
@@ -161,36 +164,36 @@ CONST zclAttrRec_t zclSmartIR_Attrs[SMARTIR_MAX_ATTRIBUTES] =
       (void *)&zclSmartIR_IdentifyTime
     }
   },
-/*
+  /*
   // *** On / Off Cluster Attributes ***
   {
-    ZCL_CLUSTER_ID_GEN_ON_OFF,
-    { // Attribute record
-      ATTRID_ON_OFF,
-      ZCL_DATATYPE_BOOLEAN,
-      ACCESS_CONTROL_READ,
-      (void *)&zclSmartIR_OnOff
-    }
-  },
+  ZCL_CLUSTER_ID_GEN_ON_OFF,
+  { // Attribute record
+  ATTRID_ON_OFF,
+  ZCL_DATATYPE_BOOLEAN,
+  ACCESS_CONTROL_READ,
+  (void *)&zclSmartIR_OnOff
+}
+},
 
-  // *** On / Off Switch Configuration Cluster *** //
-  {
-    ZCL_CLUSTER_ID_GEN_ON_OFF_SWITCH_CONFIG,
-    { // Attribute record
-      ATTRID_ON_OFF_SWITCH_TYPE,
-      ZCL_DATATYPE_ENUM8,
-      ACCESS_CONTROL_READ,
-      (void *)&zclSmartIR_OnOffSwitchType
-    }
-  },
-  {
-    ZCL_CLUSTER_ID_GEN_ON_OFF_SWITCH_CONFIG,
-    { // Attribute record
-      ATTRID_ON_OFF_SWITCH_ACTIONS,
-      ZCL_DATATYPE_ENUM8,
-      ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE,
-      (void *)&zclSmartIR_OnOffSwitchActions
-    }
-  },
-  */
+// *** On / Off Switch Configuration Cluster *** //
+{
+ZCL_CLUSTER_ID_GEN_ON_OFF_SWITCH_CONFIG,
+{ // Attribute record
+ATTRID_ON_OFF_SWITCH_TYPE,
+ZCL_DATATYPE_ENUM8,
+ACCESS_CONTROL_READ,
+(void *)&zclSmartIR_OnOffSwitchType
+}
+},
+{
+ZCL_CLUSTER_ID_GEN_ON_OFF_SWITCH_CONFIG,
+{ // Attribute record
+ATTRID_ON_OFF_SWITCH_ACTIONS,
+ZCL_DATATYPE_ENUM8,
+ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE,
+(void *)&zclSmartIR_OnOffSwitchActions
+}
+},
+*/
 };

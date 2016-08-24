@@ -5,37 +5,41 @@
 
 #include "zcl.h"
 
+extern void zclSmartIR_Init( byte task_id );
+extern UINT16 zclSmartIR_event_loop( byte task_id, UINT16 events );
+
 #if defined ( MT_TASK )
-  #include "MT.h"
-  #include "MT_TASK.h"
+#include "MT.h"
+#include "MT_TASK.h"
 #endif
 
 #include "nwk.h"
 #include "APS.h"
 #include "ZDApp.h"
 #if defined ( ZIGBEE_FREQ_AGILITY ) || defined ( ZIGBEE_PANID_CONFLICT )
-  #include "ZDNwkMgr.h"
+#include "ZDNwkMgr.h"
 #endif
 #if defined ( ZIGBEE_FRAGMENTATION )
-  #include "aps_frag.h"
+#include "aps_frag.h"
 #endif
 
 const pTaskEventHandlerFn tasksArr[] = {
   macEventLoop,
   nwk_event_loop,
   Hal_ProcessEvent,
-#if defined( MT_TASK )
+  #if defined( MT_TASK )
   MT_ProcessEvent,
-#endif
+  #endif
   APS_event_loop,
-#if defined ( ZIGBEE_FRAGMENTATION )
+  #if defined ( ZIGBEE_FRAGMENTATION )
   APSF_ProcessEvent,
-#endif
+  #endif
   ZDApp_event_loop,
-#if defined ( ZIGBEE_FREQ_AGILITY ) || defined ( ZIGBEE_PANID_CONFLICT )
+  #if defined ( ZIGBEE_FREQ_AGILITY ) || defined ( ZIGBEE_PANID_CONFLICT )
   ZDNwkMgr_event_loop,
-#endif
-  zcl_event_loop
+  #endif
+  zcl_event_loop,
+  zclSmartIR_event_loop
 };
 
 const uint8 tasksCnt = sizeof( tasksArr ) / sizeof( tasksArr[0] );
@@ -51,17 +55,17 @@ void osalInitTasks( void )
   macTaskInit( taskID++ );
   nwk_init( taskID++ );
   Hal_Init( taskID++ );
-#if defined( MT_TASK )
+  #if defined( MT_TASK )
   MT_TaskInit( taskID++ );
-#endif
+  #endif
   APS_Init( taskID++ );
-#if defined ( ZIGBEE_FRAGMENTATION )
+  #if defined ( ZIGBEE_FRAGMENTATION )
   APSF_Init( taskID++ );
-#endif
+  #endif
   ZDApp_Init( taskID++ );
-#if defined ( ZIGBEE_FREQ_AGILITY ) || defined ( ZIGBEE_PANID_CONFLICT )
+  #if defined ( ZIGBEE_FREQ_AGILITY ) || defined ( ZIGBEE_PANID_CONFLICT )
   ZDNwkMgr_Init( taskID++ );
-#endif
+  #endif
   zcl_Init( taskID++ );
-//  zclSampleLight_Init( taskID );
+  zclSmartIR_Init( taskID );
 }
