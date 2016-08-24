@@ -1,5 +1,6 @@
 *.d51
-*.s51
+Coordinator/*
+End device/*
 *.cout
 *.r51
 *.lst
