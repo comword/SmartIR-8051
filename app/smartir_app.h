@@ -2,6 +2,7 @@
 extern void zclSmartIR_Init( byte task_id );
 extern void MY_UART_Init(void);
 extern UINT16 zclSmartIR_event_loop( byte task_id, UINT16 events );
+void SmartIR_MessageMSGCB( afIncomingMSGPacket_t *pckt );
 
 #define SMARTIR_ENDPOINT           8
 
@@ -13,9 +14,12 @@ extern UINT16 zclSmartIR_event_loop( byte task_id, UINT16 events );
 #define SMARTIR_EZMODE_TIMEOUT_EVT           0x0004
 #define SMARTIR_EZMODE_NEXTSTATE_EVT         0x0008
 #define SMARTIR_MAIN_SCREEN_EVT              0x0010
+#define SMARTIR_COOR_PERIODIC_CHECK_EVT      0x0011
 
 #define SMARTIR_DEVICE_VERSION     0
 #define SMARTIR_FLAGS              0
+#define SMARTIR_PROFID             0x0F08
+#define SMARTIR_DEVICEID           0x0001
 
 #define SMARTIR_HWVERSION          0
 #define SMARTIR_ZCLVERSION         0

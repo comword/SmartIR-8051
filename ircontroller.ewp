@@ -306,6 +306,7 @@
           <state>TC_LINKKEY_JOIN</state>
           <state>NV_INIT</state>
           <state>xNV_RESTORE</state>
+          <state>COORDINATOR</state>
           <state>xHOLD_AUTO_START</state>
           <state>ZTOOL_P1</state>
           <state>MT_TASK</state>
@@ -316,7 +317,7 @@
           <state>ZCL_READ</state>
           <state>ZCL_WRITE</state>
           <state>ZCL_REPORT</state>
-          <state>ZCL_EZMODE</state>
+          <state>xZCL_EZMODE</state>
           <state>ZCL_BASIC</state>
           <state>ZCL_IDENTIFY</state>
           <state>ZCL_ON_OFF</state>
@@ -1467,7 +1468,7 @@
           <state>ZCL_READ</state>
           <state>ZCL_WRITE</state>
           <state>ZCL_REPORT</state>
-          <state>ZCL_EZMODE</state>
+          <state>xZCL_EZMODE</state>
           <state>ZCL_BASIC</state>
           <state>ZCL_IDENTIFY</state>
           <state>ZCL_ON_OFF</state>
@@ -2307,6 +2308,12 @@
   </configuration>
   <group>
     <name>APP</name>
+    <file>
+      <name>$PROJ_DIR$\app\m_protocol.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\app\m_protocol.h</name>
+    </file>
     <file>
       <name>$PROJ_DIR$\app\osal_app.c</name>
     </file>

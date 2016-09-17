@@ -3,7 +3,7 @@
 <project>
   <fileVersion>2</fileVersion>
   <configuration>
-    <name>Debug</name>
+    <name>Coordinator</name>
     <toolchain>
       <name>8051</name>
     </toolchain>
@@ -18,7 +18,7 @@
           <extraArgs></extraArgs>
           <analyzeTimeout>600</analyzeTimeout>
           <enableParallel>0</enableParallel>
-          <parallelThreads>4</parallelThreads>
+          <parallelThreads>2</parallelThreads>
         </cstatargs>
         <cstatsettings>
           <package checked="true" name="STDCHECKS">
@@ -972,11 +972,11 @@
     </settings>
   </configuration>
   <configuration>
-    <name>Release</name>
+    <name>End device</name>
     <toolchain>
       <name>8051</name>
     </toolchain>
-    <debug>0</debug>
+    <debug>1</debug>
     <settings>
       <name>C-STAT</name>
       <archiveVersion>1</archiveVersion>
@@ -987,7 +987,7 @@
           <extraArgs></extraArgs>
           <analyzeTimeout>600</analyzeTimeout>
           <enableParallel>0</enableParallel>
-          <parallelThreads>4</parallelThreads>
+          <parallelThreads>2</parallelThreads>
         </cstatargs>
         <cstatsettings>
           <package checked="true" name="STDCHECKS">
@@ -1942,6 +1942,12 @@
   </configuration>
   <group>
     <name>APP</name>
+    <file>
+      <name>$PROJ_DIR$\app\m_protocol.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\app\m_protocol.h</name>
+    </file>
     <file>
       <name>$PROJ_DIR$\app\osal_app.c</name>
     </file>
