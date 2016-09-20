@@ -176,7 +176,7 @@
         </option>
         <option>
           <name>General Xdata Stack Size</name>
-          <state>0x300</state>
+          <state>0x250</state>
         </option>
         <option>
           <name>General Ext Stack Size</name>
@@ -309,7 +309,7 @@
           <state>COORDINATOR</state>
           <state>xHOLD_AUTO_START</state>
           <state>ZTOOL_P1</state>
-          <state>MT_TASK</state>
+          <state>xMT_TASK</state>
           <state>MT_APP_FUNC</state>
           <state>MT_SYS_FUNC</state>
           <state>MT_ZDO_FUNC</state>
@@ -1460,7 +1460,7 @@
           <state>NWK_AUTO_POLL</state>
           <state>HOLD_AUTO_START</state>
           <state>ZTOOL_P1</state>
-          <state>MT_TASK</state>
+          <state>xMT_TASK</state>
           <state>MT_APP_FUNC</state>
           <state>MT_SYS_FUNC</state>
           <state>MT_ZDO_FUNC</state>

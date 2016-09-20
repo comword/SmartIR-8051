@@ -1,6 +1,7 @@
 
 extern void zclSmartIR_Init( byte task_id );
 extern void MY_UART_Init(void);
+extern void MY_UartProcessZToolData ( uint8 port, uint8 event );
 extern UINT16 zclSmartIR_event_loop( byte task_id, UINT16 events );
 void SmartIR_MessageMSGCB( afIncomingMSGPacket_t *pckt );
 

@@ -6,6 +6,7 @@
 #include "ZDProfile.h"
 #include "MT_SYS.h"
 #include "MT_UART.h"
+#include "MT.h"
 
 #include "zcl.h"
 #include "zcl_general.h"
@@ -18,7 +19,9 @@
 #endif
 
 #include "smartir_app.h"
+#include "m_protocol.h"
 #include "string.h"
+#include "hal_led.h"
 
 byte zclSmartIR_TaskID;
 uint8 zclSmartIRSeqNum;
@@ -140,13 +143,13 @@ void MY_UART_Init()
   uartConfig.tx.maxBufSize        = MT_UART_DEFAULT_MAX_TX_BUFF;
   uartConfig.idleTimeout          = MT_UART_DEFAULT_IDLE_TIMEOUT;
   uartConfig.intEnable            = TRUE;
-  #if defined (ZTOOL_P1) || defined (ZTOOL_P2)
-  uartConfig.callBackFunc         = MT_UartProcessZToolData;
-  #elif defined (ZAPP_P1) || defined (ZAPP_P2)
-  uartConfig.callBackFunc         = MT_UartProcessZAppData;
-  #else
-  uartConfig.callBackFunc         = NULL;
-  #endif
+  //#if defined (ZTOOL_P1) || defined (ZTOOL_P2)
+  //uartConfig.callBackFunc         = MT_UartProcessZToolData;
+  //#elif defined (ZAPP_P1) || defined (ZAPP_P2)
+  //uartConfig.callBackFunc         = MT_UartProcessZAppData;
+  //#else
+  uartConfig.callBackFunc         = MY_UartProcessZToolData;
+  //#endif
   #if defined (MT_UART_DEFAULT_PORT)
   HalUARTOpen (MT_UART_DEFAULT_PORT, &uartConfig);
   #else
@@ -158,15 +161,49 @@ void MY_UART_Init()
   #endif
 }
 
+void MY_UartProcessZToolData ( uint8 port, uint8 event )
+{
+  uint8 flag=0,i,j=0;
+  uint8 buf[128]; 
+  (void)event;
+  while (Hal_UART_RxBufLen(port))
+  {
+    HalUARTRead (port, &buf[j], 1);
+    j++;
+    flag=1;
+    if(flag == 1){
+      /* Allocate memory for the data */
+      mtOSALSerialData_t *pMsg =  (mtOSALSerialData_t *)osal_msg_allocate( sizeof( mtOSALSerialData_t )+j+1);
+      if (pMsg)
+      {
+        /* Fill up what we can */
+        pMsg->hdr.event = CMD_SERIAL_MSG;
+        pMsg->msg = (uint8*)(pMsg+1);
+        pMsg->msg[0] = j;
+        for(i=0;i<j;i++)
+          pMsg->msg [i+1]= buf[i];
+        osal_msg_send( App_TaskID, (byte *)pMsg );
+        /* deallocate the msg */
+        osal_msg_deallocate ( (uint8 *)pMsg );
+      }
+      else
+      {
+        return;
+      }
+    }
+  }
+}
+
 void zclSmartIR_Init( byte task_id )
 {
+  init_m_clock();
   zclSmartIR_TaskID = task_id;
   MY_UART_Init();
   MT_UartRegisterTaskID(task_id);
   #ifdef COORDINATOR
   zgDeviceLogicalType = ZG_DEVICETYPE_COORDINATOR;
   #else
-  zgDeviceLogicalType = ZG_DEVICETYPE_ENDDEVICE;
+  zgDeviceLogicalType = ZG_DEVICETYPE_ROUTER;
   #endif
   #ifdef ZCL_ON_OFF
   zclSmartIR_DstAddr.addrMode = (afAddrMode_t)AddrBroadcast;
@@ -246,6 +283,7 @@ void zclSmartIR_Init( byte task_id )
   #endif
   uint8 *Init_finished = "Welcome to Z-Stack Home (1.2.2a.44539)\n";
   HalUARTWrite(0,Init_finished,strlen((const char*)Init_finished));
+  HalLedSet(HAL_LED_1,HAL_LED_MODE_ON);
 }
 
 uint16 zclSmartIR_event_loop( uint8 task_id, uint16 events )
@@ -293,6 +331,10 @@ uint16 zclSmartIR_event_loop( uint8 task_id, uint16 events )
         zclSmartIR_ProcessOTAMsgs( (zclOTA_CallbackMsg_t*)MSGpkt);
         break;
         #endif
+        case CMD_SERIAL_MSG:
+          if(pro_verify_uart_mesg(((mtOSALSerialData_t *)MSGpkt)->msg,*(((mtOSALSerialData_t *)MSGpkt)->msg)) == 1){
+          }
+        break; 
         default:
         break;
       }
@@ -442,14 +484,9 @@ static void zclSmartIR_ProcessIncomingMsg( zclIncomingMsg_t *pInMsg )
 
 void SmartIR_MessageMSGCB( afIncomingMSGPacket_t *pckt )
 {
-  switch ( pkt->clusterId )
+  switch ( pckt->clusterId )
   {
-    case SAMPLEAPP_PERIODIC_CLUSTERID:
-      break;
 
-    case SAMPLEAPP_FLASH_CLUSTERID:
-      
-      break;
   }
 }
 
