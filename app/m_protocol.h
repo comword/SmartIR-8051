@@ -10,3 +10,4 @@ static inline void send_moded_forxms(unsigned int xms);
 void Delayms(unsigned int xms);
 void Delayus(float xus);
 void init_m_clock(void);
+void m_proc_uart_msg(uint8 *Msg, unsigned int length);

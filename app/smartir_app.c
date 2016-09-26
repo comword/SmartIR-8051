@@ -333,6 +333,7 @@ uint16 zclSmartIR_event_loop( uint8 task_id, uint16 events )
         #endif
         case CMD_SERIAL_MSG:
           if(pro_verify_uart_mesg(((mtOSALSerialData_t *)MSGpkt)->msg,*(((mtOSALSerialData_t *)MSGpkt)->msg)) == 1){
+            m_proc_uart_msg(((mtOSALSerialData_t *)MSGpkt)->msg,*(((mtOSALSerialData_t *)MSGpkt)->msg));
           }
         break; 
         default:
@@ -363,6 +364,10 @@ uint16 zclSmartIR_event_loop( uint8 task_id, uint16 events )
     return ( events ^ SMARTIR_EZMODE_TIMEOUT_EVT );
   }
   #endif // ZLC_EZMODE
+  if ( events & SMARTIR_COOR_PERIODIC_CHECK_EVT )
+  {
+    
+  }
   // Discard unknown events
   return 0;
 }

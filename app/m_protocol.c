@@ -27,15 +27,20 @@ char pro_verify_uart_mesg(uint8 *buffer,int length)
 
 void send_IR_signal(uint8 *Msg, int length)
 {
-  unsigned int pos;
-  while(pos)
-  {
-    if(pos)
-      send_moded_forxms(Hi_time);
-    else {
-      Out_pin = 0;
-      Delayms(Hi_time);
+  unsigned int pos = 0;
+  while(pos<length){
+    unsigned int tmp = *(Msg+pos);
+    unsigned int tmp_bit = 1;
+    while(tmp_bit<256){
+      if(tmp&tmp_bit)
+        send_moded_forxms(Hi_time);
+      else {
+        Out_pin = 0;
+        Delayms(Hi_time);
+      }
+      tmp_bit=tmp_bit<<1;
     }
+    pos++;
   }
 }
 
@@ -71,4 +76,9 @@ void init_m_clock()
   CLKCONCMD &= ~0x40;
   while(CLKCONSTA & 0x40);
   CLKCONCMD &= ~0x47;
+}
+
+void m_proc_uart_msg(uint8 *Msg, unsigned int length)
+{
+  
 }
